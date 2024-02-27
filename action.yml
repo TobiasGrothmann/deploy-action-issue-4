@@ -24,7 +24,11 @@ inputs:
   repository-name:
     description: "Name of the repository to publish to."
     required: false
-    default: "${{ github.repository }}"
+    default: ${{ github.repository }}
+  token:
+    description: "The GitHub token to use for deployment."
+    required: false
+    default: ${{ github.token }}
 
 runs:
   using: "composite"
@@ -51,4 +55,5 @@ runs:
         branch: gh-pages
         repository-name: ${{ inputs.repository-name }}
         folder: ${{ inputs.rootPath }}/${{ inputs.outDirectory }}
+        token: ${{ inputs.token }}
         clean: false

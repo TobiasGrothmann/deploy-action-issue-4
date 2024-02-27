@@ -21,6 +21,10 @@ inputs:
     description: "Source code root path [default: '.']"
     required: true
     default: "."
+  repository-name:
+    description: "Name of the repository to publish to."
+    required: false
+    default: "${{ github.repository }}"
 
 runs:
   using: "composite"
@@ -45,5 +49,6 @@ runs:
       uses: JamesIves/github-pages-deploy-action@v4.4.1
       with:
         branch: gh-pages
+        repository-name: ${{ inputs.repository-name }}
         folder: ${{ inputs.rootPath }}/${{ inputs.outDirectory }}
         clean: false
